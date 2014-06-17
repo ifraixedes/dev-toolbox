@@ -6,6 +6,8 @@ homeRouter.get('/', function home(req, res, next) {
   res.render('home', { msg: 'Message from Server' });
 });
 
-module.exports = {
-  '': homeRouter
+module.exports = function (config) {
+  return {
+    '': homeRouter
+  }
 };

@@ -4,13 +4,14 @@ var path = require('path');
 var http = require('http');
 var express = require('express');
 var consolidate = require('consolidate');
-var appRoutes = require('./routes');
+var routesConfigurer = require('./routes');
 var middlewares = require('./middlewares');
 
 var server = null;
 
 function start(config, callback) {
   var expressApp = express();
+  var routes = routesConfigurer(config);
 
   server = http.createServer(expressApp);
   expressApp.engine('html', consolidate.swig);
@@ -18,8 +19,8 @@ function start(config, callback) {
   expressApp.set('views', path.join(__dirname, 'views'));
   expressApp.use(express.static(path.join(__dirname, 'public')));
 
-  for (var route in appRoutes) {
-    expressApp.use('/' + route, appRoutes[route]);
+  for (var route in routes) {
+    expressApp.use('/' + route, routes[route]);
   }
 
   expressApp.use(middlewares.errorHandler);
