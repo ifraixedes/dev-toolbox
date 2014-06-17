@@ -9,15 +9,15 @@ function closeServer(callback) {
 
   closeTimeoutId = setTimeout(callback, 500);
 
-  server.stop(function () {
+  app.stop(function () {
     clearTimeout(closeTimeoutId);
     callback();
   });
 }
 
-function startServer(options, callback) {
+function startServer(callback) {
   closeServer(function () {
-    server.start(options, callback);
+    app.start(callback);
   });
 }
 
@@ -27,7 +27,7 @@ function exitProcess(numCode) {
   });
 }
 
-var server = require('./dev/server');
+var app = require('./dev');
 
 process.on('message', function (closeMsg) {
   switch (closeMsg) {
@@ -37,7 +37,7 @@ process.on('message', function (closeMsg) {
       });
       break;
     case 'start':
-      startServer({ port: 4000 }, function () {
+      startServer(function () {
         process.send('listening');
       });
   }
