@@ -44,7 +44,7 @@ function stop(callback) {
     server = null;
   } else {
     if (callback) {
-      callback();
+      setInmediate(callback());
     }
   }
 }
