@@ -1,5 +1,7 @@
 'use strict';
 
+var app = require('./dev');
+
 function closeServer(callback) {
   var closeTimeoutId;
 
@@ -26,8 +28,6 @@ function exitProcess(numCode) {
     process.exit(numCode);
   });
 }
-
-var app = require('./dev');
 
 process.on('message', function (closeMsg) {
   switch (closeMsg) {
