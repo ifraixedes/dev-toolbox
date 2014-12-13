@@ -19,9 +19,9 @@ function start(config, callback) {
   expressApp.set('views', path.join(__dirname, 'views'));
   expressApp.use(express.static(path.join(__dirname, 'public')));
 
-  for (var route in routes) {
+  Object.keys(routes).forEach(function (route) {
     expressApp.use('/' + route, routes[route]);
-  }
+  });
 
   expressApp.use(middlewares.errorHandler);
 
