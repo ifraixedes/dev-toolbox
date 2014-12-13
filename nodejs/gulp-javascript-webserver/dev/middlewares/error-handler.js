@@ -1,6 +1,9 @@
 'use strict';
 
-module.exports =  function errorHandler(error, req, res, next) {
-  res.json({ status: 'error', message: error.message });
+module.exports = function (config) {
+  return function (error, req, res, next) {
+    // TODO setup logger
+    console.error(error.stack);
+    res.json({ status: 'error', message: error.message });
+  };
 };
-
