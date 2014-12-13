@@ -3,6 +3,7 @@
 var cpFork = require('child_process').fork;
 var path = require('path');
 var gulp = require('gulp');
+var gutil = require('gulp-util');
 var gLiveReload = require('gulp-livereload');
 var serverChildProc ;
 
@@ -12,16 +13,20 @@ var projectPaths = {
 };
 
 gulp.task('default', function () {
-  console.warn('I don\'t have a default task because you haven\'t defined any and I don\'t want to make any assumption');
+  gutil.log('I don\'t have a default task because you haven\'t defined any and I don\'t want to make any assumption');
 });
 
 gulp.task('server', function (next) {
   function startServer() {
     serverChildProc = cpFork('./runDevServer');
     serverChildProc.on('message', function (message) {
-      if ('listening' === message) {
+      if ('listening' === message.event) {
         gLiveReload.changed();
         next();
+      }
+
+      if ('error' === message.event)  {
+        gutil.log(gutil.colors.red('Error on start server:', message.details));
       }
     });
     serverChildProc.send('start');
@@ -29,8 +34,12 @@ gulp.task('server', function (next) {
 
   if (serverChildProc) {
     serverChildProc.on('message', function (message) {
-      if ('closed' === message) {
+      if ('closed' === message.event) {
         serverChildProc.kill('SIGTERM');
+      }
+
+      if ('error' === message.event)  {
+        gutil.log(gutil.colors.red('Error on start server:', message.details));
       }
     });
     serverChildProc.on('exit', startServer);

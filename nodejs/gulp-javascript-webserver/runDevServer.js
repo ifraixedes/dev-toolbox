@@ -32,13 +32,21 @@ function exitProcess(numCode) {
 process.on('message', function (closeMsg) {
   switch (closeMsg) {
     case 'close':
-      closeServer(function () {
-        process.send('closed');
+      closeServer(function (error) {
+        if (error) {
+          process.send({ event: 'error', details: error.message });
+        } else {
+          process.send({ event: 'closed' });
+        }
       });
       break;
     case 'start':
-      startServer(function () {
-        process.send('listening');
+      startServer(function (error) {
+        if (error) {
+          process.send({ event: 'error', details: error.message });
+        } else {
+          process.send({ event: 'listening' });
+        }
       });
   }
 });
