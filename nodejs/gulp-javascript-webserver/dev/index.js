@@ -3,6 +3,20 @@
 var configurer = require('./configurer');
 var server = require('./server');
 
+
+// If module is executed then run the sever
+// otherwise export the functionalities
+if (require.main === module) {
+  bootstrapper(function (error) {
+    if (error) {
+      console.error('Server FAILURE', error);
+      process.exit(1);
+    }
+  });
+  return;
+}
+
+
 function reportInvalidOperation(error) {
   return function (callback) {
     callback(error);
