@@ -1,16 +1,17 @@
-My Scaffolders
-==============
+Dev Toolbox
+===========
 
-This repository is to store and track my application, configurations or whatever types of scaffolders that I use.
+This repository is to store and track scaffolders, development tools configurations, helpers, etc, of any technology that I've used for my development professional or not projects.
 
 
 ## Description
 
-This repository is for my personal use, you can use, but I don't expect to publish in any package manager because I don't think that it is a package for a common use.
+This repository is for my personal use, however if you find something useful you can use it, with almost any restriction, check the [License section](#License).
 
-Any contribution is accepted if it fulfills with my own expectations.
+## Contributions
 
-Each scaffolder is stored into a directorie and/or subdirectorie.
+you can contribute if you want, open issue, send a PR and I'll consider it, howerver only will be added if it fits to my own expectations.
 
 ## License
-Just MIT, read LICENSE file for more information.
+Just WTFPL, read [LICENSE](LICENSE) file for more information or visit [license site](http://www.wtfpl.net/about/)
+

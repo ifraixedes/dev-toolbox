@@ -23,7 +23,7 @@
     "javascript",
     "web server"
   ],
-  "author": "Ivan Fraixedes <ivan@fraixed.es> (http://ivan.fraixed.es)",
-  "license": "MIT",
+  "author": "Ivan Fraixedes (http://ivan.fraixed.es)",
+  "license": "WTFPL",
   "private": true
 }
