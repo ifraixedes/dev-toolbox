@@ -96,7 +96,9 @@ gulp.task('views', function () {
   .pipe(gulpPlugins.data(function () {
     return viewVars;
   }))
+  .pipe(gulpPlugins.plumber())
   .pipe(gulpPlugins.swig())
+  .on('error', gulpPlugins.util.log.bind(gulp.util, 'Error compiling template files: %s'))
   .pipe(gulp.dest('dist/'))
   .pipe(gulpPlugins.size({ views: 'views' }));
 });
