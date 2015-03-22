@@ -60,7 +60,8 @@ gulp.task('vendor-scripts', function () {
 gulp.task('jslint', function () {
   return gulp.src(['dev/scripts/**/*.js', '!dev/scripts/vendor/**/*'])
   .pipe(reload({ stream: true, once: true }))
-  .pipe(gulpPlugins.eslint({ configFile: './.eslintrc' }))
+  .pipe(gulpPlugins.eslint()) // Default eslint linting rules
+  //.pipe(gulpPlugins.eslint({ configFile: './.eslintrc' })) // Use your own elisnt configurtion
   .pipe(gulpPlugins.eslint.format());
 });
 
