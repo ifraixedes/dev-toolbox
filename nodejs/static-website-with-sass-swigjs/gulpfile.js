@@ -6,7 +6,6 @@ var gulpPlugins = require('gulp-load-plugins')();
 var del = require('del');
 var browserSync = require('browser-sync');
 var runSequence = require('run-sequence');
-var reload = browserSync.reload;
 var viewVars = require('./view-vars');
 
 var AUTOPREFIXER_BROWSERS = [
@@ -58,7 +57,7 @@ gulp.task('vendor-scripts', function () {
 // Lint JavaScript
 gulp.task('jslint', function () {
   return gulp.src(['dev/scripts/**/*.js', '!dev/scripts/vendor/**/*'])
-  .pipe(reload({ stream: true, once: true }))
+  .pipe(browserSync.stream({ once: true }))
   .pipe(gulpPlugins.eslint())
   .pipe(gulpPlugins.eslint.format());
 });
@@ -136,7 +135,7 @@ gulp.task('dev', ['styles', 'scripts', 'views', 'html', 'fonts', 'images', 'vend
   gulp.watch(['dev/images/**/*'], ['images']);
   gulp.watch(['dev/scripts/vendor/**/*'], ['vendor-scripts']);
   gulp.watch(['dev/styles/vendor/**/*'], ['vendor-styles']);
-  gulp.watch(['dist/**/*'], reload)
+  gulp.watch(['dist/**/*'], browserSync.reload)
 });
 
 // Clean Output Directory
