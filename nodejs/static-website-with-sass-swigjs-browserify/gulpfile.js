@@ -25,6 +25,10 @@ var AUTOPREFIXER_BROWSERS = [
 'bb >= 10'
 ];
 
+var minifyHtmlOpts = {
+  conditionals: true
+};
+
 // Optimize Images
 gulp.task('images', function () {
   return gulp.src('dev/images/**/*')
@@ -98,10 +102,7 @@ function bundle() {
 
 gulp.task('html', function () {
   return gulp.src(['dev/*.html'])
-  .pipe(gulpPlugins.minifyHtml({
-    conditionals: true,
-    spare: true
-  }))
+  .pipe(gulpPlugins.minifyHtml(minifyHtmlOpts))
   .pipe(gulp.dest('dist/'))
   .pipe(gulpPlugins.size({ title: 'html' }));
 });
@@ -114,6 +115,7 @@ gulp.task('views', function () {
   .pipe(gulpPlugins.plumber())
   .pipe(gulpPlugins.swig())
   .on('error', gulpPlugins.util.log.bind(gulp.util, 'Error compiling template files: %s'))
+  .pipe(gulpPlugins.minifyHtml(minifyHtmlOpts))
   .pipe(gulp.dest('dist/'))
   .pipe(gulpPlugins.size({ views: 'views' }));
 });
