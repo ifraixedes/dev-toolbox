@@ -24,7 +24,6 @@ var AUTOPREFIXER_BROWSERS = [
 'android >= 4.4',
 'bb >= 10'
 ];
-var bundler;
 
 // Optimize Images
 gulp.task('images', function () {
@@ -62,7 +61,8 @@ gulp.task('jslint', function () {
   .pipe(reload({ stream: true, once: true }))
   .pipe(gulpPlugins.eslint()) // Default eslint linting rules
   //.pipe(gulpPlugins.eslint({ configFile: './.eslintrc' })) // Use your own elisnt configurtion
-  .pipe(gulpPlugins.eslint.format());
+  .pipe(gulpPlugins.eslint.format())
+  .pipe(gulp.dest('dist/scripts')); // Copy files to allow to browserify source map works
 });
 
 // Compile and Automatically Prefix Stylesheets
@@ -83,7 +83,7 @@ gulp.task('styles', function () {
   .pipe(gulpPlugins.size({ title: 'styles' }));
 });
 
-bundler = watchify(browserify('./dev/scripts/index.js', watchify.args))
+var bundler = watchify(browserify('./dev/scripts/index.js', { debug: true }));
 gulp.task('scripts', ['jslint', 'browserify']);
 gulp.task('browserify', bundle)
 bundler.on('update', bundle);
@@ -93,14 +93,15 @@ function bundle() {
   return bundler.bundle()
     .on('error', gulpPlugins.util.log.bind(gulpPlugins.util, 'Browserify Error'))
     .pipe(source('bundle.js'))
-    .pipe(buffer())
-    .pipe(gulpPlugins.sourcemaps.init({loadMaps: true}))
-    .pipe(gulpPlugins.sourcemaps.write('./'))
     .pipe(gulp.dest('dist/scripts'));
 }
 
 gulp.task('html', function () {
   return gulp.src(['dev/*.html'])
+  .pipe(gulpPlugins.minifyHtml({
+    conditionals: true,
+    spare: true
+  }))
   .pipe(gulp.dest('dist/'))
   .pipe(gulpPlugins.size({ title: 'html' }));
 });
