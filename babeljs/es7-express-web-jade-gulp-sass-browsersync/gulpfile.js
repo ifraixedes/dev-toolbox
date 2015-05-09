@@ -111,7 +111,7 @@ gulp.task('build', ['clean'], function (cb) {
 
 // Server scripts copy
 gulp.task('babel-compile-server:dist', function () {
-  return gulp.src(['dev/**/*.js', '!dev/assets/scripts'])
+  return gulp.src(['dev/**/*.js', '!dev/assets/**/*'])
   .pipe(gulpPlugins.babel({ stage: 0, optional: ['runtime'] }))
   .pipe(gulp.dest('dist/build'))
 });
@@ -166,7 +166,7 @@ gulp.task('babel-compile-client:dist', function () {
 
 gulp.task('client-scripts:dist', ['jslint-client', 'babel-compile-client:dist'], function () {
   return gulp.src('dev/assets/scripts/bundle.js')
-  .pipe(gulpPlugins.uglifyjs('bundle.js'))
+  .pipe(gulpPlugins.uglify('bundle.js'))
   .pipe(gulp.dest('dist/build/public/scripts'))
   .pipe(gulpPlugins.size({ title: 'scripts' }));
 });
