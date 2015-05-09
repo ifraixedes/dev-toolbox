@@ -83,7 +83,7 @@ gulp.task('styles', function () {
 gulp.task('scripts', ['jslint'], function () {
   return gulp.src(['dev/scripts/**/*.js', '!dev/scripts/vendor/**/*'])
   .pipe(gulpPlugins.plumber())
-  .pipe(gulpPlugins.uglifyjs('bundle.js',{ outSourceMap: true, sourceRoot: '/', basePath: '/dist' }))
+  .pipe(gulpPlugins.uglify('bundle.js',{ outSourceMap: true, sourceRoot: '/', basePath: '/dist' }))
   .pipe(gulp.dest('dist/scripts'))
   .pipe(gulpPlugins.size({ title: 'scripts' }));
 });

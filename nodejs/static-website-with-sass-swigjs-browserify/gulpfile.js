@@ -5,7 +5,6 @@ var gulp = require('gulp');
 var gulpPlugins = require('gulp-load-plugins')();
 var del = require('del');
 var source = require('vinyl-source-stream');
-var buffer = require('vinyl-buffer');
 var watchify = require('watchify');
 var browserify = require('browserify');
 var browserSync = require('browser-sync');

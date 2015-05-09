@@ -31,7 +31,6 @@
     "gulp-plumber": "^0.6.6",
     "gulp-size": "^1.2.1",
     "gulp-swig": "^0.7.4",
-    "gulp-uglifyjs": "^0.6.1",
     "gulp-util": "^3.0.4",
     "run-sequence": "^1.0.2",
     "vinyl-source-stream": "^1.1.0",

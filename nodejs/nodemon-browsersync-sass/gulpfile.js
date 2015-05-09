@@ -52,7 +52,7 @@ gulp.task('styles', function () {
 gulp.task('client-scripts', ['jslint-client'], function () {
   return gulp.src('dev/assets/scripts/**/*.js')
   .pipe(gulpPlugins.plumber())
-  .pipe(gulpPlugins.uglifyjs('bundle.js',{ outSourceMap: true, sourceRoot: '/', basePath: '/dev/public' }))
+  .pipe(gulpPlugins.uglify('bundle.js',{ outSourceMap: true, sourceRoot: '/', basePath: '/dev/public' }))
   .pipe(gulp.dest('dev/public/scripts'));
 });
 
@@ -142,7 +142,7 @@ gulp.task('fonts', function () {
 
 gulp.task('client-scripts:dist', ['jslint-client'], function () {
   return gulp.src('dev/assets/scripts/**/*.js')
-  .pipe(gulpPlugins.uglifyjs('bundle.js'))
+  .pipe(gulpPlugins.uglify('bundle.js'))
   .pipe(gulp.dest('dist/build/public/scripts'))
   .pipe(gulpPlugins.size({ title: 'scripts' }));
 });
