@@ -5,7 +5,6 @@ var gulpPlugins = require('gulp-load-plugins')();
 var del = require('del');
 var browserSync = require('browser-sync');
 var runSequence = require('run-sequence');
-var reload = browserSync.reload;
 
 var AUTOPREFIXER_BROWSERS = [
 'ie >= 10',
@@ -22,14 +21,14 @@ var AUTOPREFIXER_BROWSERS = [
 // Lint JavaScript
 gulp.task('jslint-client', function () {
   return gulp.src(['dev/assets/scripts/**/*.js'])
-  .pipe(reload({ stream: true, once: true }))
+  .pipe(browserSync.stream({ once: true }))
   .pipe(gulpPlugins.eslint())
   .pipe(gulpPlugins.eslint.format());
 });
 
 gulp.task('jslint-server', function () {
   return gulp.src(['dev/**/*.js', '!dev/public/**/*', '!dev/assets/**/*'])
-  .pipe(reload({ stream: true, once: true }))
+  .pipe(browserSync.stream({ once: true }))
   .pipe(gulpPlugins.eslint())
   .pipe(gulpPlugins.eslint.format());
 });
@@ -87,11 +86,11 @@ gulp.task('dev', ['styles', 'client-scripts', 'jslint-server'], function () {
     ignore: ['dev/public', 'dev/assets']
   })
   .on('change', ['jslint-server'])
-  .on('restart', [reload]);
+  .on('restart', browserSync.reload);
 
   gulp.watch(['dev/assets/styles/**/*.{scss,css}'], ['styles']);
   gulp.watch(['dev/assets/scripts/**/*.js'], ['client-scripts']);
-  gulp.watch(['dev/public/**/*','dev/views/**/*'], reload);
+  gulp.watch(['dev/public/**/*','dev/views/**/*'], browserSync.reload);
 });
 
 // Clean Output Directory
