@@ -96,7 +96,7 @@ gulp.task('dev', ['styles', 'client-scripts', 'jslint-server'], function () {
 // Clean Output Directory
 gulp.task('clean', del.bind(null, [ 'dist', '.sass-cache']));
 
-// Build Production Files, the Default Task
+// Build Production Files
 gulp.task('build', ['clean'], function (cb) {
   runSequence(['client-scripts:dist', 'styles:dist', 'images', 'fonts', 'server:dist', 'processed-assets'], function (error) {
     if (error) {

@@ -139,7 +139,7 @@ gulp.task('dev', ['styles', 'scripts', 'views', 'html', 'fonts', 'images', 'vend
 // Clean Output Directory
 gulp.task('clean', del.bind(null, [ 'dist', '.sass-cache']));
 
-// Build Production Files, the Default Task
+// Build Production Files
 gulp.task('build', ['clean'], function (cb) {
   runSequence(['scripts', 'styles', 'images', 'fonts', 'vendor-styles', 'vendor-scripts'], function (error) {
     if (error) {
