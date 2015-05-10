@@ -68,7 +68,10 @@ gulp.task('dev', ['styles', 'client-scripts', 'jslint-server'], function () {
     open: false, // Don't open the browser windows with the url when staring
     reloadDelay: 800,
     proxy: 'localhost:4000',
-    port: 4040
+    port: 4040,
+    ui: {
+      port: 8080
+    }
   });
 
   gulpPlugins.nodemon({
