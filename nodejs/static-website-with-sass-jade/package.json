@@ -12,6 +12,11 @@
   "node": ">=0.10.0",
   "author": "Ivan Fraixedes (http://ivan.fraixed.es)",
   "license": "WTFPL",
+  "scripts": {
+    "bootstrap": "mkdir -p dev/images dev/fonts dev/scripts dev/styles dev/views; touch view-vars.js",
+    "dev": "gulp dev",
+    "build": "gulp build"
+  },
   "devDependencies": {
     "browser-sync": "^2.7.1",
     "del": "^1.1.1",
