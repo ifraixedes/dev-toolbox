@@ -56,6 +56,7 @@ var bundler = browserify('./dev/assets/scripts/index.js', { debug: true }).trans
 gulp.task('browserify', bundle)
 bundler.on('update', bundle);
 bundler.on('log', gulpPlugins.util.log);
+bundler.on('error', gulpPlugins.util.log);
 
 function bundle() {
   return bundler.bundle()
@@ -84,8 +85,9 @@ gulp.task('dev', ['styles', 'client-scripts', 'jslint-server'], function () {
 
   gulpPlugins.nodemon({
     execMap: {
-      js: "babel-node --stage 0"
+      js: 'babel-node --stage 0'
     },
+    delay: '3',
     script: 'dev/index.js',
     ext: 'js',
     watch: ['dev'],

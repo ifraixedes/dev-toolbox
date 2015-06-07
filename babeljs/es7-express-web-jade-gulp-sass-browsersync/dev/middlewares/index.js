@@ -1,6 +1,8 @@
 'use strict';
 
-module.exports = function (config) {
+export default middlewares;
+
+function middlewares (config) {
   return {
     requestLogger: require('morgan')(config.get('middlewares').logger.format, config.get('middlewares').logger.options),
     bodyParser: require('body-parser').urlencoded({ extended: true }),
@@ -8,4 +10,4 @@ module.exports = function (config) {
     errorHandler: require('./error-handler')(config),
     generalCachingPolicy: require('./general-caching-policy')(config)
   };
-};
+}
