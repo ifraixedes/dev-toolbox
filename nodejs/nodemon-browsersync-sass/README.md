@@ -1,9 +1,11 @@
-Static Website development with Sass and Jade
-=============================================
+Express server with Jade & Sass compilation externally with Gulp
+================================================================
 
-This gulpfile allows to develop a web site/app with a custom [NodeJS](https://nodejs.org/) backend in an opinionated way, so no configurations files, put each file in the right directory and have fun!
+This gulpfile allows to develop a web site/app with a custom [NodeJS](https://nodejs.org/) backend with an opinionated organisation, which if you don't feel comfortable you can change it spending a little bit time, although it may not make sense if that it's the case.
 
-It also provides "sass" compilations and some frontend optimisations.
+This is a scaffolder, so the it comes with some common middlewares and organised in a general way that fulfill the most of my projects when I start them. The structure try to be simple, however for me it's and for you maybe it's not that easy because you haven't created it hence you'll have to spend some time to get that comfortability.
+
+It also provides "sass" compilations and some frontend optimisations with [BrowserSync](http://www.browsersync.io/) to help you in the development process.
 
 ## How Works
 
@@ -25,13 +27,13 @@ The root directory contains two directories "dev" and "dist"; you may not see "d
 
 The important directory is "dev", because it's where you have to add your files; "dist" directory is auto-generated, and basically create a "production" version of your site/app, then you shouldn't commit into your repository.
 
-In "__dev__" directory is where you have to create your files, you have the freedom in how to structure your server, frontend stuff must be settle into specific directories to be able to  with some exceptions, which are
+In "__dev__" directory is where you have to create your files, you have the freedom in how to structure your server, the current one it's my choice; frontend stuff must be settle into specific directories to be able to  with some exceptions, which are
 
 * __public/image__ should contains all the image files
 * __public/fonts__ should contains all the fonts files
 * __assets/styles__ subfolder contains all the "css" and "sass" files; "css" files will be __automatically added the browser prefixes__ and "scss" files will be compiled to "css" and left in "__public/styles__" directory; bear in mind that the main "scss" must be named "main.scss", which must import everything that you want to be compiled, the compiled file will be name __"main.css"__ and it will be dropped in "dist/styles".
   If you have styles that you don't want to be processed, just add them in "__public/styles__"
-   
+
 * __assets/scripts__ contains all the ___javascripts___ files; the files will be optimised (concatenated and minified) by [uglify](https://github.com/mishoo/UglifyJS) and the result file, named __"bundle.js"__, will be dropped in "__public/scripts__".
   If you have scripts that you don't want to be added to "bundle.js", just add them in "__public/scripts__".
 
@@ -59,9 +61,9 @@ __NOTE__ file watching process sometimes doesn't consider new files created in t
 
 To create the production build of your site/app you have to run `npm run build`.
 
-Production build create a directory in the root project folder named "dist" which contain all the scripts that your application needs to run; it means that no "scss" files or javscript files palced in "dev/assets/scripts" will be there.
+Production build create a directory in the root project folder named "dist" which contain all the scripts that your application needs to run; it means that no "scss" files or javascript files placed in "dev/assets/scripts" will be there.
 
-All the frontend javascript will be optmised (concatenation and minification through [uglify](https://github.com/mishoo/UglifyJS)).
+All the frontend javascript will be optimised (concatenation and minification through [uglify](https://github.com/mishoo/UglifyJS)).
 
 Images ("dev/public/images") will be optimised before copying them into "dist".
 
