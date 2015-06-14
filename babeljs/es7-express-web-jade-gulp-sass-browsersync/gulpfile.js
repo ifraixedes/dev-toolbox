@@ -113,7 +113,7 @@ gulp.task('build', ['clean'], function (cb) {
 gulp.task('babel-compile-server:dist', function () {
   return gulp.src(['dev/**/*.js', '!dev/assets/**/*'])
   .pipe(gulpPlugins.babel({ stage: 0, optional: ['runtime'] }))
-  .pipe(gulp.dest('dist/build'))
+  .pipe(gulp.dest('dist/built'))
 });
 
 gulp.task('server:dist', ['babel-compile-server:dist'], function () {
@@ -123,7 +123,7 @@ gulp.task('server:dist', ['babel-compile-server:dist'], function () {
     '!dev/public{,/**}',
     '!dev/assets{,/**}'
   ])
-  .pipe(gulp.dest('dist/build'))
+  .pipe(gulp.dest('dist/built'))
   .pipe(gulpPlugins.size({ title: 'server' }));
 });
 
@@ -133,7 +133,7 @@ gulp.task('processed-assets', function () {
     'dev/public/*',
     'dev/public/**/vendor/**/*'
   ])
-  .pipe(gulp.dest('dist/build/public'))
+  .pipe(gulp.dest('dist/built/public'))
   .pipe(gulpPlugins.size({ title: 'processed assets' }));
 });
 
@@ -144,14 +144,14 @@ gulp.task('images', function () {
     progressive: true,
     interlaced: true
   })))
-  .pipe(gulp.dest('dist/build/public/images'))
+  .pipe(gulp.dest('dist/built/public/images'))
   .pipe(gulpPlugins.size({ title: 'images' }));
 });
 
 // Copy Web Fonts To Dist
 gulp.task('fonts', function () {
   return gulp.src(['dev/public/fonts/**'])
-  .pipe(gulp.dest('dist/build/public/fonts'))
+  .pipe(gulp.dest('dist/built/public/fonts'))
   .pipe(gulpPlugins.size({ title: 'fonts' }));
 });
 
@@ -161,19 +161,19 @@ gulp.task('babel-compile-client:dist', function () {
   return gulp.src('dev/assets/scripts/**/*.js')
   .pipe(gulpPlugins.babel())
   .pipe(gulpPlugins.concat('bundle.js'))
-  .pipe(gulp.dest('dist/build/public/scripts'))
+  .pipe(gulp.dest('dist/built/public/scripts'))
 });
 
 gulp.task('client-scripts:dist', ['jslint-client', 'babel-compile-client:dist'], function () {
   return gulp.src('dev/assets/scripts/bundle.js')
   .pipe(gulpPlugins.uglify('bundle.js'))
-  .pipe(gulp.dest('dist/build/public/scripts'))
+  .pipe(gulp.dest('dist/built/public/scripts'))
   .pipe(gulpPlugins.size({ title: 'scripts' }));
 });
 
 gulp.task('styles:dist', ['styles'], function () {
   return gulp.src('dev/public/styles/**/*.css')
   .pipe(gulpPlugins.csso())
-  .pipe(gulp.dest('dist/build/public/styles'))
+  .pipe(gulp.dest('dist/built/public/styles'))
   .pipe(gulpPlugins.size({ title: 'styles' }));
 });
