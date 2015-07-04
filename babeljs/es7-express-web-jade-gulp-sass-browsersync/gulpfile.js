@@ -52,10 +52,8 @@ gulp.task('styles', function () {
 gulp.task('babel-compile-client', function () {
   return gulp.src('dev/assets/scripts/**/*.js')
   .pipe(gulpPlugins.plumber())
-  .pipe(gulpPlugins.sourcemaps.init())
   .pipe(gulpPlugins.babel())
   .pipe(gulpPlugins.concat('bundle.js'))
-  .pipe(gulpPlugins.sourcemaps.write('.'))
   .pipe(gulp.dest('dev/public/scripts'))
 });
 
