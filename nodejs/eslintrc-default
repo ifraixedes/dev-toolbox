@@ -118,7 +118,7 @@
     "key-spacing": [1, { "beforeColon": false, "afterColon": true, "mode": "strict" }],
     "linebreak-style": [1, "unix"],
     "max-nested-callbacks": [1, 2],
-    "new-cap": [2, { capIsNewExceptions: ["Object", "Function", "Number", "String", "Boolean", "Date", "Array", "Symbol", "RegExp", "Q"] }],
+    "new-cap": [2, { capIsNewExceptions: ["Object", "Function", "Number", "String", "Boolean", "Date", "Array", "Symbol", "RegExp"] }],
     "new-parens": 1,
     "no-array-constructor": 1,
     "no-lonely-if": 1,
