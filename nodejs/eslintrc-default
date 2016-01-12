@@ -130,7 +130,7 @@
     "no-underscore-dangle": 1,
     "no-unneeded-ternary": 1,
     "object-curly-spacing": [1, "always"],
-    "one-var": [1, "never"],
+    "one-var": [2, { "initialized": "never" }],
     "operator-assignment": [1, "always"],
     "operator-linebreak": [1, "before"],
     "padded-blocks": [1, "never"],
