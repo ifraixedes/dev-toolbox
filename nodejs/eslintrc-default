@@ -43,7 +43,10 @@
     "no-sparse-arrays": 1,
     "no-unreachable": 1,
     "use-isnan": 2,
-    "valid-jsdoc": 1,
+    "valid-jsdoc": [1, {
+      "prefer": { "return": "returns", "arg": "param", "argument": "param" },
+      "requireReturn": false
+    }],
     "valid-typeof": 2,
     "no-unexpected-multiline": 2,
     "block-scoped-var": 1,
