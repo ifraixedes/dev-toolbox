@@ -87,6 +87,7 @@
     "no-shadow-restricted-names": 1,
     "no-shadow": [2, { "builtinGlobals": true, "hoist": "functions" }],
     "no-undef-init": 1,
+    "no-undef": 1,
     "no-unused-vars": 1,
     "no-use-before-define": [2, "nofunc"],
     "callback-return": 2,
