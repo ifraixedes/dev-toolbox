@@ -3,9 +3,7 @@
     "node": true,
     "es6": true
   },
-  "plugins": [
-    "standard"
-  ],
+  "extends": "standard",
   "rules": {
     "block-scoped-var": 2,
     "callback-return": 2,
